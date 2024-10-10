@@ -23,7 +23,7 @@ function transformarPalabraAArray($palabraAAdivinar)
 
 function finDelJuego(array $arrayLetrasAdivinadas, array $error): int
 {
-    if (count($error) >= '4') {
+    if (count($error) >= '5') {
         return 1;
     }
     foreach ($arrayLetrasAdivinadas as $letras) {

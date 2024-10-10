@@ -1,5 +1,11 @@
 <?php
 session_start();
+if(isset($_COOKIE['usuario'])){
+    $_SESSION['user'] = $_COOKIE['usuario'];
+    header('Location: welcome.php');
+    exit();
+}
+
 
 $usuarios = [
     'dalpe2003@gmail.com' => '1234',
@@ -12,6 +18,19 @@ if (isset($_POST['login'])){
   
 if(array_key_exists($email, $usuarios) && $password === $usuarios[$email]){
     $_SESSION['user'] = $email;
+    if (isset($_POST['recordar'])) {
+        setcookie(
+            'usuario',
+            $email,
+            [
+                'expires' => time() + 3600, // 1 hora
+                'domain' => '', // Domini actual
+                'secure' => true, // Només HTTPS
+                'httponly' => true, // Només accessible via HTTP
+                'samesite' => 'Lax' // o 'Strict' o 'None'
+            ]
+        );
+    }
     header('Location: welcome.php');
 
 } else {
@@ -35,6 +54,7 @@ if(array_key_exists($email, $usuarios) && $password === $usuarios[$email]){
         Password: <input type="password" name="password" required>
         <button type="submit" name="login">Login</button>
         <br>
+        <label for="recordar">recordar la proxima vez?<input type="checkbox" name="recordar" id="recordar"></label>
     </form>
 </body>
 </html>
