@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+$_SESSION['historial'][] = $_SERVER['PHP_SELF'];
+
+    include('./funciones.php');
+
+    $jugador1 = 1;
+    $jugador2 = 2;
+    $jugadorActual = $jugador1;
+    $graella = inicialitzarGraella();
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $columna = $_POST['columna'] - 1; 
+        $jugadorActual = $_POST['jugadorActual']; 
+
+    if (ferMoviment($graella, $columna, $jugadorActual)==true) {
+            $jugadorActual =($jugadorActual == $jugador1) ? $jugador2 : $jugador1;
+    }
+}
+    pintarGraella($graella);
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -31,26 +55,6 @@
     </style>
 </head>
 <body>
-
-<?php
-    include('./funciones.php');
-
-    $jugador1 = 1;
-    $jugador2 = 2;
-    $jugadorActual = $jugador1;
-    $graella = inicialitzarGraella();
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $columna = $_POST['columna'] - 1; 
-        $jugadorActual = $_POST['jugadorActual']; 
-
-    if (ferMoviment($graella, $columna, $jugadorActual)==true) {
-            $jugadorActual =($jugadorActual == $jugador1) ? $jugador2 : $jugador1;
-    }
-}
-    pintarGraella($graella);
-?>
-
 
 <form action="" method="post">
     <label for="columna"><b>Introduce la columna (1-7):</b></label>

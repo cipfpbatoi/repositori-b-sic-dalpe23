@@ -1,5 +1,5 @@
 <?php
-function inicialitzarGraella(){
+function inicialitzarGraella(){   //declarar constantes para luego a la hora de guardar las fichas 
     $filas = 6;
     $columnas = 7;
     $tabla = array();

@@ -1,23 +1,15 @@
-<!DOCTYPE html>
-<html lang="ca">
-<head>
-    <meta charset="UTF-8">
-    <title>ofegat</title>
-    <style>
-        .correct { color: green; }
-        .incorrect { color: red; }
-    </style>
-</head>
-<body>
-
 <?php
+session_start();
+
+$_SESSION['historial'][] = $_SERVER['PHP_SELF'];
+
         include('./funciones.php');
 
             $error = "";  
             $letrasCorrectasHistorial = "";
             $paraulaAEndevinar = "Caracola";
         
-            $arrayLetrasAdivinadas = ['_', '_', '_', '_', '_', '_', '_', '_']; 
+            $arrayLetrasAdivinadas = ['_', '_', '_', '_', '_', '_', '_', '_'];        //hacer que transforme la palabra a un array
             
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -32,6 +24,17 @@
         }
         
         ?>
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>ofegat</title>
+    <style>
+        .correct { color: green; }
+        .incorrect { color: red; }
+    </style>
+</head>
+<body>
 
 <form action="" method="post" enctype="multipart/form-data">
         <?php 
