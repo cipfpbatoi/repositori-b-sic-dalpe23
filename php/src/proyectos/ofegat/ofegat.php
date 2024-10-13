@@ -33,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         array_push($letrasCorrectasHistorial, $letraUsuario);
     }
 }
-
 $_SESSION['arrayLetrasAdivinadas'] = $arrayLetrasAdivinadas;
 $_SESSION['letrasCorrectasHistorial'] = $letrasCorrectasHistorial;
 $_SESSION['error'] = $error;
